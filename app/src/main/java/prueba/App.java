@@ -4,18 +4,13 @@
 package prueba;
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.temporal.ChronoUnit;
 
 public class App {
 
-    public class fec {
+    public static void main(String[] args) {
+        LocalDate a = LocalDate.parse(args[0]);
+        LocalDate b = LocalDate.parse(args[1]);
+        System.out.println(Fecha.diff(a, b));
 
-        public static void main(String[] args) {
-            var fecha1 = LocalDate.of(2022, Month.JANUARY, 1);
-            var fecha2 = LocalDate.of(2023, Month.JANUARY, 1);
-            System.out.println(ChronoUnit.DAYS.between(fecha1, fecha2));
-
-        }
     }
 }
