@@ -11,14 +11,29 @@ import java.time.temporal.ChronoUnit;
  *
  * @author isaac_dugo
  */
-public abstract class Fecha 
-{
+public abstract class Fecha {
 
-    public static long diff(LocalDate a, LocalDate b) 
+    public static long diff(LocalDate a, LocalDate b) {
+
+        return ChronoUnit.DAYS.between(a, b);
+
+    }
+
+    public static int counth(LocalDate starDate, LocalDate endDate)
     {
-        
-        return ChronoUnit.DAYS.between(a,b);
-
+        int count=0;
+        LocalDate currentDate = starDate;
+        while(!currentDate.isAfter(endDate))
+        {   
+            if(currentDate.getDayOfMonth()==13 && currentDate.getDayOfWeek().equals("TUESDAY"))
+            {
+                count++;
+            }
+       
+            currentDate=currentDate.plusDays(1);
+            
+        }
+        return count;
     }
 
 }

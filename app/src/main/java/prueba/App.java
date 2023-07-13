@@ -11,6 +11,8 @@ public class App {
         LocalDate a = LocalDate.parse(args[0]);
         LocalDate b = LocalDate.parse(args[1]);
         System.out.println(Fecha.diff(a, b));
+        System.out.println(Fecha.counth(a,b));
+      
 
     }
 }
