@@ -4,6 +4,7 @@
  */
 package prueba;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -19,19 +20,17 @@ public abstract class Fecha {
 
     }
 
-    public static int counth(LocalDate starDate, LocalDate endDate)
-    {
-        int count=0;
+    public static int counth(LocalDate starDate, LocalDate endDate) {
+        int count = 0;
         LocalDate currentDate = starDate;
-        while(!currentDate.isAfter(endDate))
-        {   
-            if(currentDate.getDayOfMonth()==13 && currentDate.getDayOfWeek().equals("TUESDAY"))
+        while (!currentDate.isAfter(endDate)) {
+            if (currentDate.getDayOfMonth() == 13 && currentDate.getDayOfWeek() == DayOfWeek.TUESDAY)
             {
                 count++;
             }
-       
-            currentDate=currentDate.plusDays(1);
-            
+
+            currentDate = currentDate.plusDays(1);
+
         }
         return count;
     }

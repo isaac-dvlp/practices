@@ -4,6 +4,7 @@
 package prueba;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 public class App {
 
@@ -12,6 +13,67 @@ public class App {
         LocalDate b = LocalDate.parse(args[1]);
         System.out.println(Fecha.diff(a, b));
         System.out.println(Fecha.counth(a,b));
+        int importe=120;
+        Map<Integer, Integer> quant = import(importe);
+        for(Map.Entry<Integer, Integer> entry : quant.entrySet())
+        {
+            int valor = entry.getKey();
+            int cant = entry.getValue();
+            if(valor>=5)
+                if(cant>1)
+                {
+                System.out.println(cant + " billetes de "+valor+" euros.");
+                }
+                else
+                {
+                System.out.println(cant+ " billete de "+valor+" euros.");
+                }
+            else if(valor <5 && >=2)
+            {
+               if(cant>1)
+                {
+                System.out.println(cant + " monedas de "+valor+" euros.");
+                }
+                else
+                {
+                System.out.println(cant+ " moneda de "+valor+" euros.");
+                }     
+            }
+            else if(valor =1)
+            {
+               if(cant>1)
+                {
+                System.out.println(cant + " monedas de "+valor+" euro.");
+                }
+                else
+                {
+                System.out.println(cant+ " moneda de "+valor+" euro.");
+                }     
+            }
+            else if(valor <1 && >.01)
+            {
+               if(cant>1)
+                {
+                System.out.println(cant + " monedas de "+valor+" centimos.");
+                }
+                else
+                {
+                System.out.println(cant+ " moneda de "+valor+" centimos.");
+                }     
+            }
+            else
+            {
+               if(cant>1)
+                {
+                System.out.println(cant + " monedas de "+valor+" centimo.");
+                }
+                else
+                {
+                System.out.println(cant+ " moneda de "+valor+" centimo.");
+                }     
+            }
+            
+        }
       
 
     }
