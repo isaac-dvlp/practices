@@ -6,7 +6,7 @@ import java.util.Arrays;
  *
  * @author franci
  */
-public class Moneda2
+public class Coinage
 {
     static final double[] EUR = 
     {
@@ -16,7 +16,7 @@ public class Moneda2
     
     final double[] types;
     
-    public Moneda2(double[] coinTypes)
+    public Coinage(double[] coinTypes)
     {
         coinTypes = coinTypes.clone();
         Arrays.sort(coinTypes);
@@ -27,9 +27,9 @@ public class Moneda2
         }
     }
     
-    public static Moneda2 eurInstance()
+    public static Coinage eurInstance()
     {
-        return new Moneda2(EUR);
+        return new Coinage(EUR);
     }
     
     public double[] getTypes()

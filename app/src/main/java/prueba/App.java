@@ -3,78 +3,71 @@
  */
 package prueba;
 
-import java.time.LocalDate;
-import java.util.Map;
+import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) {
-        LocalDate a = LocalDate.parse(args[0]);
-        LocalDate b = LocalDate.parse(args[1]);
-        System.out.println(Fecha.diff(a, b));
-        System.out.println(Fecha.counth(a,b));
-        int importe=120;
-        Map<Integer, Integer> quant = import(importe);
-        for(Map.Entry<Integer, Integer> entry : quant.entrySet())
-        {
-            int valor = entry.getKey();
-            int cant = entry.getValue();
-            if(valor>=5)
-                if(cant>1)
-                {
-                System.out.println(cant + " billetes de "+valor+" euros.");
-                }
-                else
-                {
-                System.out.println(cant+ " billete de "+valor+" euros.");
-                }
-            else if(valor <5 && >=2)
-            {
-               if(cant>1)
-                {
-                System.out.println(cant + " monedas de "+valor+" euros.");
-                }
-                else
-                {
-                System.out.println(cant+ " moneda de "+valor+" euros.");
-                }     
-            }
-            else if(valor =1)
-            {
-               if(cant>1)
-                {
-                System.out.println(cant + " monedas de "+valor+" euro.");
-                }
-                else
-                {
-                System.out.println(cant+ " moneda de "+valor+" euro.");
-                }     
-            }
-            else if(valor <1 && >.01)
-            {
-               if(cant>1)
-                {
-                System.out.println(cant + " monedas de "+valor+" centimos.");
-                }
-                else
-                {
-                System.out.println(cant+ " moneda de "+valor+" centimos.");
-                }     
-            }
-            else
-            {
-               if(cant>1)
-                {
-                System.out.println(cant + " monedas de "+valor+" centimo.");
-                }
-                else
-                {
-                System.out.println(cant+ " moneda de "+valor+" centimo.");
-                }     
-            }
-            
-        }
-      
+    public static void main(String[] args) 
+    {
+//        LocalDate a = LocalDate.parse(args[0]);
+//        LocalDate b = LocalDate.parse(args[1]);
+//        System.out.println(Fecha.diff(a, b));
+//        System.out.println(Fecha.counth(a,b));
+//        int importe=120;
 
+        Scanner sc = new Scanner(System.in);
+        
+        Coinage coinage = Coinage.eurInstance();
+        double[] types = coinage.getTypes();
+        
+        double totalAmount = 0.0;
+        int[] totalCoins = new int[types.length];
+        boolean hasCoins = false;
+        for(;;)
+        {
+            System.out.print("importe:");
+            String line=sc.nextLine().trim();
+            
+            if(line.isEmpty())
+            {
+                break;
+            }
+                    
+            double amount = Double.parseDouble(line);
+            int[] coins = coinage.getCoins(amount);
+            hasCoins |= showCoins(types, coins);
+            merge(totalCoins, coins);
+            totalAmount += amount;
+            System.out.println();
+        }
+
+        if(hasCoins)
+        {
+            System.out.println();
+            System.out.printf("importe total: %.2f\n",totalAmount); 
+            showCoins(types, totalCoins);
+        }
+    }
+
+    private static boolean showCoins(double[] types, int[] coins)
+    {
+        boolean hasCoins = false;
+        for(int i=0;i<coins.length;i++)
+        {
+            if(coins[i]>0)
+            {
+                hasCoins = true;
+                System.out.printf("%.2f = %d\n",types[i],coins[i]);
+            }
+        }
+        return hasCoins;
+    }
+    
+    static void merge(int[] a, int b[])
+    {
+        for(int i=0;i<a.length;i++)
+        {
+            a[i] += b[i];
+        }
     }
 }
